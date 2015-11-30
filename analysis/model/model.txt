@@ -1,0 +1,48 @@
+model {
+	for( i in 1:n ) {
+		y[i] ~ dnorm(y.hat[i], tau.y)
+		y.hat[i] <- mu0.adj +  b0.adj[plotID[i]] + d0.adj[time[i]] +bacMean[bac[i]]
+		+ mu1* moisture[i]  #+ b1[plotID[i]] * moisture[i] * 0
+		+ d2[time[i]] * tx[i]
+	}
+	for( m in 1:bacCount ) {
+		bacMean[m] ~ dnorm(0, .0001)
+		bacOffset[m] <- bacMean[m]  - bacMean[1]
+	}	
+	for( j in 1:plotCount ) {
+		b0[j]  ~ dnorm(0, tau.b0)
+		b0.adj[j] <- b0[j] - mean(b0[ ])
+	}		
+	for( k in 1:timeCount ) {
+		d0[k] <- D[k, 1]
+		d0.adj[k] <- d0[k] - mean(d0[ ])
+		d2[k] <- xi.d2 * D[k, 2]
+		D[k, 1:2] ~ dmnorm(D.hat[k, ], Tau.D[,])
+		D.hat[k, 1] <- 0
+		D.hat[k, 2] <- mu2	
+		txNotOffset[k] <- d0.adj[k]  + d2[k]
+	}			
+	mu0 ~ dnorm(0, .0001)
+	mu0.adj <- mu0 + bacMean[1] + mean(b0[ ])  + mean(d0[ ])
+	tau.y <- pow(sigma.y, -2)
+	sigma.y ~ dunif(0, 100)
+	
+	mu1 ~ dnorm(0, .0001)
+	mu2 ~ dnorm(0, .0001)
+		
+	sigma.b0 ~ dunif(0, 100)
+	tau.b0 <- pow(sigma.b0, -2)
+	
+	droughtDifTx <- txNotOffset[3] - txNotOffset[1] #Feature C
+	droughtDifControl <- d0.adj[3] - d0.adj[1] #Feature D
+	featureCProb <- step(droughtDifTx )
+	
+	#The redundant xi's improves mixing (see Gelman & Hill 2007, Ch x).
+	xi.d0 ~ dunif(0.1, 100) 
+	xi.d2 ~ dunif(0.1, 100)	
+	Tau.D[1:2, 1:2] ~ dwish(W[,], 3)
+	Sigma.D[1:2, 1:2] <- inverse(Tau.D[,])
+	sigma.d0.adj <- xi.d0 * sqrt(Tau.D[1,1])
+	sigma.d2.adj <- xi.d2 * sqrt(Tau.D[2,2])	
+	rho2 <- Sigma.D[1,2] / sqrt(Sigma.D[1,1] * Sigma.D[2,2])
+}

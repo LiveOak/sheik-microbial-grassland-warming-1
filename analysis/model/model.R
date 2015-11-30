@@ -1,15 +1,15 @@
 ### The main purpose of this file is to run and compare different models (that are usually nested).
 ### Since other datasets will lead the analyst down different paths.
 ### This is difficult to understand if you're not familar with running mamximum likelihood and Bayesian
-### multilevel models in R and WinBUGS.  Much of these decisions are informed by the second half of Gelman & Hill (2007).
+### multilevel models in R and OpennBUGS.  Much of these decisions are informed by the second half of Gelman & Hill (2007).
 
 rm(list=ls(all=TRUE))
 library(arm) #Load Gelman & Hill's multilevel model package.
+library(R2OpenBUGS) #Communicate with OpenBUGS from R
 library(MCMCpack) #For 'rwish' function.
 
 pathData  <- "./data/raw/qpcr.tsv"
-pathModel <- "./analysis/model/model-fixed-moisture.odc"
-pathBugs <- "C:/WinBUGS14/"
+pathModel <- "./analysis/model/model.txt"
 
 ds <- read.table(pathData, header=TRUE, sep="\t")
 #summary(ds)
@@ -105,7 +105,18 @@ parameters <- c( "mu0","mu0.adj", "sigma.y", "mu1", "mu2", "bacOffset"
   , "xi.d0", "xi.d2", "sigma.d0.adj", "sigma.d2.adj"
   , "txNotOffset"#, "droughtDifTx","droughtDifControl"
   )
-(bugsFit <- bugs(data, inits, parameters, pathModel, n.chains=6, n.iter=8000*11, n.burnin=2000, n.thin=10, bugs.directory=pathBugs, debug=T))
+(bugsFit <- bugs(
+  data                   = data,
+  inits                  = inits,
+  parameters.to.save     = parameters,
+  model.file             = pathModel,
+  n.chains               = 6,
+  n.iter                 = 80, #8000*11
+  n.burnin               = 2, #2000
+  n.thin                 = 10,
+  working.directory      = getwd(),
+  debug                  = TRUE
+))
 #(bugsFit <- bugs(data, inits, parameters, pathModel, n.chains=6, n.iter=1000, bugs.directory=pathBugs, debug=T))
 
 # x6 took 6.81218 hours
