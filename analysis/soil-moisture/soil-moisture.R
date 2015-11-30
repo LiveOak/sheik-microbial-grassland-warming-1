@@ -5,8 +5,8 @@ rm(list=ls(all=TRUE))
 library(bootstrap) #Load Efron & Tibshirani's bootstrap package.
 
 dateRange <- as.numeric(as.Date(c('2004/2/1', '2006/5/1'))) #Define the minimum and maximum
-path <- "./data/raw/soil-moisture.csv"
-ds <- read.table(path, header=TRUE, sep="\t")
+path <- "./data/raw/soil-moisture.tsv"
+ds <- read.table(path, header=TRUE, sep="\t", stringsAsFactors=F)
 colnames(ds) <- c('Date', 'PlotID', 'Rep', 'Treatment', 'Moisture')
 ds <- subset(ds, PlotID %in% 2:5)
 useColor <- TRUE #Toggle the color on/off for presentations/articles.
