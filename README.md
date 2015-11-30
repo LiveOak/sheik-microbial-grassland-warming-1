@@ -2,7 +2,7 @@ Welcome to the code repository for the [article](http://www.nature.com/ismej/jou
  
 # <cite>Effect of warming and drought on grassland microbial communities</cite>
 
-TODO: add Zenodo DOI
+[![DOI](https://zenodo.org/badge/4971/LiveOak/sheik-microbial-grassland-warming-1.svg)](https://zenodo.org/badge/latestdoi/4971/LiveOak/sheik-microbial-grassland-warming-1)
 
 [Cody S Sheik](http://www.d.umn.edu/llo/people/csheik.html)<sup>1,2</sup>, [William Howard Beasley](https://scholar.google.com/citations?user=ffsJTC0AAAAJ&hl=en)<sup>3</sup>, [Mostafa S Elshahed](https://microbiology.okstate.edu/faculty/mostafa/elshahed.html)<sup>4</sup>, [Xuhui Zhou](http://ecolab.ou.edu/?member_info&id=3)<sup>1</sup>, [Yiqi Luo](http://ecolab.ou.edu/?member_info&id=52)<sup>1</sup> and [Lee R Krumholz](http://mpbio.ou.edu/lee-krumholz)<sup>1,2</sup>.
 
@@ -48,4 +48,4 @@ TODO: insert directories
 # Code Repository
 The analysis is written primarily in R, under the GPL-2 License.  
 
-<!--The DOI of the *repository* (not of the article) is [10.5281/zenodo.12212](https://zenodo.org/record/12212).-->
+The DOI of the *repository* (not of the article) is [10.5281/zenodo.34429](https://zenodo.org/record/34429).
