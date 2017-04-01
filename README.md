@@ -2,7 +2,7 @@ Welcome to the code repository for the [article](http://www.nature.com/ismej/jou
  
 # <cite>Effect of warming and drought on grassland microbial communities</cite>
 
-[![DOI](https://zenodo.org/badge/4971/LiveOak/sheik-microbial-grassland-warming-1.svg)](https://zenodo.org/badge/latestdoi/4971/LiveOak/sheik-microbial-grassland-warming-1)
+[![DOI](https://zenodo.org/badge/46948068.svg)](https://zenodo.org/badge/latestdoi/46948068)
 
 [Cody S Sheik](http://www.d.umn.edu/llo/people/csheik.html)<sup>1,2</sup>, [William Howard Beasley](https://scholar.google.com/citations?user=ffsJTC0AAAAJ&hl=en)<sup>3</sup>, [Mostafa S Elshahed](https://microbiology.okstate.edu/faculty/mostafa/elshahed.html)<sup>4</sup>, [Xuhui Zhou](http://ecolab.ou.edu/?member_info&id=3)<sup>1</sup>, [Yiqi Luo](http://ecolab.ou.edu/?member_info&id=52)<sup>1</sup> and [Lee R Krumholz](http://mpbio.ou.edu/lee-krumholz)<sup>1,2</sup>.
 
